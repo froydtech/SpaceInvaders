@@ -28,7 +28,7 @@ public class BulletController : MonoBehaviour
             GameManager gm = GameObject.FindObjectOfType<GameManager>();
             gm.Initgame();
         }
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
     // Start is called before the first frame update
     
@@ -43,7 +43,8 @@ public class BulletController : MonoBehaviour
         traveleddistance = Vector3.Distance(startPos, transform.position);
         if (traveleddistance > maxDist)
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }

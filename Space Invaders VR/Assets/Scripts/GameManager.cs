@@ -66,6 +66,7 @@ public class GameManager : MonoBehaviour
         if ((currState == State.GameOverGround) || (currState == State.GameOverPlayer))
             return;
         currState = State.GameOverGround;
+        KillAll();
         uiText.text = "Game over, they've landed!  Shoot to play again. Score: " + enemiesShot;
     }
 
@@ -74,6 +75,7 @@ public class GameManager : MonoBehaviour
         if ((currState == State.GameOverGround) || (currState == State.GameOverPlayer))
             return;
         currState = State.GameOverPlayer;
+        KillAll();
         uiText.text = "Game over, they've hit you!  Shoot to play again. Score: " + enemiesShot;
     }
   
@@ -83,5 +85,15 @@ public class GameManager : MonoBehaviour
             return;
         enemiesShot++;
         RefreshUI();
+    }
+
+    public void KillAll()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+        for (int i = 0; i < enemies.Length; i++)
+        {
+            Destroy(enemies[i]);
+        }
     }
 }

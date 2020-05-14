@@ -12,14 +12,26 @@ public class guncontrollers : MonoBehaviour
 
     //bullet speed
     public float bulletSpeed;
-   
+
+    //object pool
+    ObjectPool bulletPool;
+
+    //grab the pool component
+
+    private void Awake()
+    {
+        bulletPool = GetComponent<ObjectPool>();
+    }
+
+
+
     // Update is called once per frame
 
     public void HandleInput()
     {
 
-            //spawn a bullet
-            GameObject newBullet = Instantiate(bulletPrefab);
+        //spawn a bullet
+        GameObject newBullet = bulletPool.GetObj();
 
             //poisition will be that of the gun
             newBullet.transform.position = gun.transform.position;
